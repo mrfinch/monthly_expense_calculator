@@ -41,3 +41,5 @@ gem 'spring',        group: :development
 gem 'rails-backbone', '1.2.0'
 
 gem 'devise', '4.2.0'
+
+gem 'mysql2', '0.3.21'
