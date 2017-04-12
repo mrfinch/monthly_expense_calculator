@@ -3,7 +3,7 @@
 #= require_tree ./models
 #= require_tree ./views
 #= require_tree ./routers
-
+console.log 'asdfg'
 window.MonthlyExpenseCalculator =
   Models: {}
   Collections: {}

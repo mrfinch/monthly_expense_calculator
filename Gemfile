@@ -43,3 +43,7 @@ gem 'rails-backbone', '1.2.0'
 gem 'devise', '4.2.0'
 
 gem 'mysql2', '0.3.21'
+
+gem "bower-rails", '0.11.0'
+gem 'less-rails', '2.8.0'
+gem 'therubyracer', '0.12.3'

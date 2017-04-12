@@ -1,0 +1,14 @@
+<div class="navbar-text">
+Monthly Expense Calculator
+</div>
+
+<script type="text/javascript">
+$( document ).ready(function() {
+  MECD = window.MECD || {}
+  MECD.Router = new MonthlyExpenseCalculator.Routers.DashboardRouter
+  Backbone.history.start({pushState: true})
+});
+</script>
+
+<div class="mecd-main" style="clear: both;">
+</div>
