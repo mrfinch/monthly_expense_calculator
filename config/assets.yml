@@ -1,0 +1,3 @@
+precompile:
+  - dashboard-libraries.css
+  - dashboard-libraries.js

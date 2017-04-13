@@ -1,6 +1,7 @@
-<div class="navbar-text">
-Monthly Expense Calculator
-</div>
+<head>
+<%= stylesheet_link_tag "dashboard-libraries", :media => "all" %>
+<%= javascript_include_tag("dashboard-libraries") %>
+</head>
 
 <script type="text/javascript">
 $( document ).ready(function() {
@@ -10,5 +11,9 @@ $( document ).ready(function() {
 });
 </script>
 
-<div class="mecd-main" style="clear: both;">
+<div class="mecd-main">
+  <div class="mecd-top-nav-container" id="mecd-top-nav-container-id">
+  </div>
+  <div class="mecd-full-container" id="mecd-full-container-id">
+  </div>
 </div>

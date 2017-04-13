@@ -20,6 +20,9 @@ module MonthlyExpenseCalculator
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
+    rails_root = ENV['RAILS_ROOT'] || File.dirname(__FILE__) + '/..'
+    assets_config = YAML.load_file(rails_root + '/config/assets.yml')
+    config.assets.precompile += assets_config["precompile"]
+
   end
 end
