@@ -17,5 +17,6 @@
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink
+//= require bootstrap
 //= require backbone/monthly_expense_calculator
 //= require_tree .
