@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130023305) do
+ActiveRecord::Schema.define(version: 20170415082904) do
 
   create_table "users", force: true do |t|
     t.string   "email",                  limit: 191, default: "", null: false
@@ -33,11 +33,17 @@ ActiveRecord::Schema.define(version: 20170130023305) do
     t.datetime "locked_at"
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.string   "name"
+    t.string   "phone"
+    t.string   "currency"
+    t.string   "profile_image"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["created_at"], name: "index_users_on_created_at", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+  add_index "users", ["updated_at"], name: "index_users_on_updated_at", using: :btree
 
 end
