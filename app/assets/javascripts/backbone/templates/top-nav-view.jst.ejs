@@ -1,5 +1,25 @@
 <div class="top-nav-bar">
   <nav class="navbar navbar-inverse">
-    <p class="navbar-text">ExpenseCalculator</p>
+    <!-- <p class="navbar-text">ExpenseCalculator</p> -->
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <p class="navbar-text">EXPENSE CALCULATOR</p>
+      </div>
+      <% if(!loggedIn) { %>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <p class="navbar-btn">
+              <a href="#" class="btn btn-primary js-login">Log in</a>
+            </p>
+          </li>
+          <li>
+            <p class="navbar-btn">
+              <a href="#" class="btn btn-success msL msR js-signup">Sign up</a>
+            </p>
+          </li>
+        </ul>
+      <% } %>
+    </div>
   </nav>
 </div>
+<div class="js-signup-login"></div>
