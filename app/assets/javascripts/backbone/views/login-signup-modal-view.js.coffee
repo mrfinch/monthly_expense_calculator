@@ -6,6 +6,8 @@ class MonthlyExpenseCalculator.Views.LoginSignupModalView extends Backbone.View
   events:
     'click .js-show-signup': 'showSignupView'
     'click .js-show-login': 'showLoginView'
+    'submit form[name=login-form]': 'loginUser'
+    'submit form[name=signup-form]': 'signupUser'
 
   initialize: (options = {}) ->
     console.log 'view init modal', options
@@ -31,6 +33,34 @@ class MonthlyExpenseCalculator.Views.LoginSignupModalView extends Backbone.View
     $('.modal-backdrop').addClass('hidden')
     @render()
 
+  loginUser: (e) ->
+    e.preventDefault()
+
+  signupUser: (e) ->
+    e.preventDefault()
+    console.log 'signup'
+    data = $(e.currentTarget).serializeArray()
+
+    $.ajax
+      type: 'POST'
+      data: data
+      url: 'auth/signup'
+      success: (result,status,xhr) ->
+        console.log result
+      error: (xhr,status,error) ->
+        console.log xhr
+
+  loginUser: (e) ->
+    e.preventDefault()
+    data = $(e.currentTarget).serializeArray()
+    $.ajax
+      type: 'POST'
+      data: data
+      url: 'auth/login'
+      success: (result,status,xhr) ->
+        console.log result
+      error: (xhr,status,error) ->
+        console.log xhr
 
   MECD = window.MECD ? {}
   MECD.LoginSignupModalView = LoginSignupModalView

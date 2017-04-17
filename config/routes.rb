@@ -3,6 +3,14 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  namespace :api do
+    resource :dashboard, only: [:index]
+  end
+
+  match 'auth/signup', via: [:post], to: 'auth#signup'
+  match 'auth/login', via: [:post], to: 'auth#login'
+  match 'auth/logout', via: [:get], to: 'auth#logout'
+
   # You can have the root of your site routed with "root"
   root 'home#index'
 

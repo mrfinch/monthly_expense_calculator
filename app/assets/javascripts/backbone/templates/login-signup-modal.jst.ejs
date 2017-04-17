@@ -8,15 +8,15 @@
       <div class="modal-body">
 
         <form name="login-form" <% if(!showLogin){ %> class="hidden" <% } %> >
-            <input type="text" name="login-email" id="email-val" class="form-control" placeholder="Email" />
-            <input type="password" name="login-password" id="password-val" class="form-control mdT" placeholder="Password" />
+            <input type="text" name="email" id="email-val" class="form-control" placeholder="Email" />
+            <input type="password" name="password" id="password-val" class="form-control mdT" placeholder="Password" />
             <button type="submit" class="btn btn-success msB mdT wide-100">Submit</button>
         </form>
 
         <form name="signup-form" <% if(showLogin){ %> class="hidden" <% } %> >
             <input type="text" name="fullname" id="fname" class="form-control" placeholder="Name" />
-            <input type="text" name="email-signup-val" id="email-signup" class="form-control mdT" placeholder="Email" />
-            <input type="text" name="password-signup-val" id="password-signup" class="form-control mdT" placeholder="Password" />
+            <input type="text" name="email" class="form-control mdT" placeholder="Email" />
+            <input type="text" name="password" class="form-control mdT" placeholder="Password" />
             <button type="submit" class="btn btn-success msB mdT wide-100">Submit</button>
         </form>
       </div>
