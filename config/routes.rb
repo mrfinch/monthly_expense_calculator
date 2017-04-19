@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   namespace :api do
-    resource :expenses
+    resources :expenses
   end
 
   match 'auth/signup', via: [:post], to: 'auth#signup'

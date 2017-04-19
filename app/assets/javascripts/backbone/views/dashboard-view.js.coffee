@@ -12,11 +12,25 @@ class MonthlyExpenseCalculator.Views.DashboardView extends Backbone.View
   render: =>
     $(@el).html @template()
 
+    @renderRecentExpenses()
+
     @
 
   openAddExpenseModal: (e) ->
     addExpenseModal = new MonthlyExpenseCalculator.Views.AddExpenseModalView
     @$('.js-add-expense-modal').html addExpenseModal.render().el
+
+  renderRecentExpenses: ->
+    @recentExpenseCollection = new MonthlyExpenseCalculator.Collections.ExpensesCollection
+    @recentExpenseCollection.fetchRecentlyAddedExpense(true)
+    @recentExpenseCollection.fetch
+      success: (collection) ->
+        console.log collection, 'succ'
+        _.each collection.models, (model) ->
+          expenseCardView = new MonthlyExpenseCalculator.Views.ExpenseCardView({model: model})
+          @$('.js-recent-expenses').append expenseCardView.render().el
+      error: (m) ->
+        console.log m
 
   MECD = window.MECD ? {}
   MECD.DashboardView = DashboardView

@@ -5,7 +5,20 @@ module Api
     before_filter :check_user_login
 
     def index
+      expenses = current_user.expenses
 
+      if params[:recently_added]
+        expenses = expenses.order('created_at DESC')
+      end
+
+      total = expenses.count
+
+      offset = params[:offset] || 0
+      limit = params[:limit] || 5
+
+      data = expenses.offset(offset).limit(limit).map { |exp| exp.attributes }
+
+      render json: { data: data, status: true, total: total }, status: :ok
     end
 
     def create
