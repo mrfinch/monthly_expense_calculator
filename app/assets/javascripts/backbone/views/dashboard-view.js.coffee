@@ -17,7 +17,7 @@ class MonthlyExpenseCalculator.Views.DashboardView extends Backbone.View
     @
 
   openAddExpenseModal: (e) ->
-    addExpenseModal = new MonthlyExpenseCalculator.Views.AddExpenseModalView
+    addExpenseModal = new MonthlyExpenseCalculator.Views.ExpenseModalView
     @$('.js-add-expense-modal').html addExpenseModal.render().el
 
   renderRecentExpenses: ->

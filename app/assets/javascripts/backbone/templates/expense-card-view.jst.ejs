@@ -1,3 +1,10 @@
-<div class="card-block">
-  <h4 class="card-title"><%- model.name %></h4>
+<div class="expense-notice expense-success">
+  <div class="expense-heading">
+    <%- model.name %>
+    <a href="#" class="btn btn-default pull-right js-edit-expense" data-id="<%- model.id %>">Edit</a>
+  </div>
+  <div class="clearfix"></div>
+  <div class="sub-info msT">
+    <em>Cost:</em> <strong><%- model.cost %></strong> <span class="dot"></span> <%- moment(model.made_on).local().format("YYYY-MM-DD HH:mm") %>
+  </div>
 </div>

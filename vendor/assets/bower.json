@@ -1,6 +1,8 @@
 {
   "name": "dsl-generated-dependencies",
   "dependencies": {
-    "bootstrap": "3.3.7"
+    "bootstrap": "3.3.7",
+    "moment": "2.18.0",
+    "moment-timezone": "0.5.10"
   }
 }

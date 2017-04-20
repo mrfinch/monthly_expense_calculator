@@ -18,4 +18,6 @@
 //= require backbone_rails_sync
 //= require backbone_datalink
 //= require bootstrap
+//= require moment
+//= require moment-timezone
 //= require backbone/monthly_expense_calculator

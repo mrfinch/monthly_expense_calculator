@@ -1,7 +1,10 @@
 class MonthlyExpenseCalculator.Views.ExpenseCardView extends Backbone.View
 
   template: JST['backbone/templates/expense-card-view']
-  className: 'expense-card-view card'
+  className: 'expense-card-view'
+
+  events:
+    'click .js-edit-expense': 'editExpense'
 
   initialize: (options = {}) ->
     console.log 'home view init', options
@@ -14,6 +17,11 @@ class MonthlyExpenseCalculator.Views.ExpenseCardView extends Backbone.View
     )
 
     @
+
+  editExpense: (e) ->
+    e.preventDefault()
+    editExpenseModal = new MonthlyExpenseCalculator.Views.ExpenseModalView({model: @model})
+    $('.js-add-expense-modal').html editExpenseModal.render().el
 
   MECD = window.MECD ? {}
   MECD.ExpenseCardView = ExpenseCardView

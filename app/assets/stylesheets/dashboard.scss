@@ -16,3 +16,28 @@
     padding: 5 10 5 10;
   }
 }
+
+.expense-card-view {
+  .expense-notice {
+    padding: 10px;
+    background-color: #fafafa;
+    border-left: 6px solid #7f7f84;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+       -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+            box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+  }
+
+  .expense-success {
+    border-color: #80D651;
+  }
+
+  .expense-heading {
+    font-size: 20px;
+  }
+
+  .dot:after {
+    content:'\00B7';
+    color: gray;
+  }
+}
