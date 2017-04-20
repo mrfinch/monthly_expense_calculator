@@ -7,6 +7,7 @@ class MonthlyExpenseCalculator.Routers.DashboardRouter extends Backbone.Router
   routes:
     'dashboard': 'dashboard'
     'home': 'home'
+    '': 'redirect'
     '*path': 'not_found'
 
   dashboard: ->
@@ -19,6 +20,13 @@ class MonthlyExpenseCalculator.Routers.DashboardRouter extends Backbone.Router
   home: ->
     homePageView = new MonthlyExpenseCalculator.Views.HomePageView({})
     @renderPage(homePageView, false)
+
+  redirect: ->
+    console.log 'redirect'
+    if MECD.currentUser
+      Backbone.history.navigate('dashboard', { trigger: true, replace: true })
+    else
+      Backbone.history.navigate('home', { trigger: true, replace: true })
 
   not_found: ->
     console.log 'not found'

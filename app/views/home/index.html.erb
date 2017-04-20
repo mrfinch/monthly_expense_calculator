@@ -5,9 +5,10 @@
 
 <script type="text/javascript">
 $( document ).ready(function() {
-  MECD = window.MECD || {}
-  MECD.Router = new MonthlyExpenseCalculator.Routers.DashboardRouter
-  Backbone.history.start({pushState: true})
+  MECD = window.MECD || {};
+  MECD.Router = new MonthlyExpenseCalculator.Routers.DashboardRouter;
+  MECD.currentUser = <% if @loggedin_user  %><%= @loggedin_user %><% else %>null<% end %>;
+  Backbone.history.start({pushState: true});
 });
 </script>
 
