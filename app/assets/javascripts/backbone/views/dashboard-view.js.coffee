@@ -38,8 +38,10 @@ class MonthlyExpenseCalculator.Views.DashboardView extends Backbone.View
     @$('.js-recent-expenses').html('')
     _.each @collection.models, (model) =>
       console.log @
-      expenseCardView = new MonthlyExpenseCalculator.Views.ExpenseCardView({model: model, parent: @})
+      expenseCardView = new MonthlyExpenseCalculator.Views.ExpenseCardView({model: model, parent: @, @collection})
       @$('.js-recent-expenses').append expenseCardView.render().el
+    console.log @collection.total_expenses
+    @$('.js-total-expenses').html(@collection.total_expenses)
     # @listenTo @collection, 'change', @renderRecentExpenses()
     # @collection.on 'change', @displayRecentExpenses()
 

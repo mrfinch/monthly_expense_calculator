@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
 
   before_save :downcase_email
 
+  def total_expenses
+    expenses.pluck(:cost).sum
+  end
+
   private
 
   def downcase_email

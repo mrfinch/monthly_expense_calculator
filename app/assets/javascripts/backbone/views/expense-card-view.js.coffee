@@ -10,6 +10,7 @@ class MonthlyExpenseCalculator.Views.ExpenseCardView extends Backbone.View
     console.log 'init card', options, @model.get('cost')
     @model = options.model
     @parent = options.parent
+    @collection = options.collection
 
   render: ->
     console.log @model
@@ -21,7 +22,7 @@ class MonthlyExpenseCalculator.Views.ExpenseCardView extends Backbone.View
 
   editExpense: (e) ->
     e.preventDefault()
-    editExpenseModal = new MonthlyExpenseCalculator.Views.ExpenseModalView({model: @model, parent: @parent})
+    editExpenseModal = new MonthlyExpenseCalculator.Views.ExpenseModalView({model: @model, parent: @parent, collection: @collection})
     $('.js-add-expense-modal').html editExpenseModal.render().el
 
   MECD = window.MECD ? {}

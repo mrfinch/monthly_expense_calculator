@@ -19,7 +19,7 @@ module Api
 
       data = expenses.offset(offset).limit(limit).map { |exp| exp.attributes }
 
-      render json: { data: data, status: true, total: total }, status: :ok
+      render json: { data: data, status: true, total: total, total_expenses: current_user.total_expenses }, status: :ok
     end
 
     def create
@@ -28,7 +28,7 @@ module Api
       expense.user = current_user
 
       if expense.save
-        render json: { model: expense.attributes, status: true }, status: :ok
+        render json: { model: expense.attributes, status: true, total_expenses: current_user.total_expenses }, status: :ok
       else
         render json: { model: {}, status: false }, status: 400
       end
@@ -39,7 +39,7 @@ module Api
       @expense.cost = params[:cost]
 
       if @expense.save
-        render json: { model: @expense.attributes, status: true }, status: :ok
+        render json: { model: @expense.attributes, status: true, total_expenses: current_user.total_expenses }, status: :ok
       else
         render json: { model: {}, status: false }, status: 400
       end

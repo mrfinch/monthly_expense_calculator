@@ -56,7 +56,12 @@ class MonthlyExpenseCalculator.Views.ExpenseModalView extends Backbone.View
       success: (m, resp, opt) =>
         console.log 'success', m
         @$('#expense-modal').modal('hide')
-        @parent.displayRecentExpenses()
+        @collection.fetch
+          success: (collection) =>
+            console.log 'coll success', collection
+            @parent.displayRecentExpenses()
+          error: (c) ->
+            console.log c
       error: (m) ->
         console.log 'error', m
     )
