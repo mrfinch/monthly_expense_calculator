@@ -11,7 +11,7 @@ class MonthlyExpenseCalculator.Views.ExpenseModalView extends Backbone.View
     console.log 'view init expense modal', options, @parent
     @model = options.model
     @parent = options.parent
-    @collection = options.collection # needed for add expense
+    @collection = options.collection
 
   render: ->
     $(@el).html @template(
@@ -28,7 +28,6 @@ class MonthlyExpenseCalculator.Views.ExpenseModalView extends Backbone.View
     final_data = {}
     _.each data, (obj) ->
       final_data[obj.name] = obj.value
-    console.log final_data
     @model = new MonthlyExpenseCalculator.Models.ExpenseModel
     @model.save(final_data,
       success: (m, resp, opt) =>
