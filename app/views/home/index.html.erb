@@ -7,7 +7,8 @@
 $( document ).ready(function() {
   MECD = window.MECD || {};
   MECD.Router = new MonthlyExpenseCalculator.Routers.DashboardRouter;
-  MECD.currentUser = <% if @loggedin_user  %><%= @loggedin_user %><% else %>null<% end %>;
+  console.log('he');
+  MECD.currentUser = <% if @loggedin_user  %><%= @loggedin_user.to_json.html_safe %><% else %>null<% end %>;
   Backbone.history.start({pushState: true});
 });
 </script>

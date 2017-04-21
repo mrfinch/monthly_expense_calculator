@@ -24,13 +24,13 @@ class MonthlyExpenseCalculator.Views.LoginSignupModalView extends Backbone.View
   showLoginView: (e) ->
     e.preventDefault()
     @showLogin = true
-    $('.modal-backdrop').addClass('hidden')
+    @removeModalBackdrop()
     @render()
 
   showSignupView: (e) ->
     e.preventDefault()
     @showLogin = false
-    $('.modal-backdrop').addClass('hidden')
+    @removeModalBackdrop()
     @render()
 
   loginUser: (e) ->
@@ -45,8 +45,10 @@ class MonthlyExpenseCalculator.Views.LoginSignupModalView extends Backbone.View
       type: 'POST'
       data: data
       url: 'auth/signup'
-      success: (result,status,xhr) ->
+      success: (result,status,xhr) =>
         console.log result
+        @removeModalBackdrop()
+        @$('#login-signup-modal').modal('hide')
       error: (xhr,status,error) ->
         console.log xhr
 
@@ -57,10 +59,16 @@ class MonthlyExpenseCalculator.Views.LoginSignupModalView extends Backbone.View
       type: 'POST'
       data: data
       url: 'auth/login'
-      success: (result,status,xhr) ->
+      success: (result,status,xhr) =>
         console.log result
+        @$('#login-signup-modal').modal('hide')
+        @removeModalBackdrop()
+        Backbone.history.navigate('dashboard', { trigger: true })
       error: (xhr,status,error) ->
         console.log xhr
+
+  removeModalBackdrop: ->
+    $('.modal-backdrop').addClass('hidden')
 
   MECD = window.MECD ? {}
   MECD.LoginSignupModalView = LoginSignupModalView

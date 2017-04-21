@@ -10,3 +10,4 @@ window.MonthlyExpenseCalculator =
   Collections: {}
   Routers: {}
   Views: {}
+window.MECD = window.MonthlyExpenseCalculator

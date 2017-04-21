@@ -22,8 +22,8 @@ class MonthlyExpenseCalculator.Routers.DashboardRouter extends Backbone.Router
     @renderPage(homePageView, false)
 
   redirect: ->
-    console.log 'redirect'
-    if MECD.currentUser
+    console.log 'redirect',MECD.currentUser
+    if _.isObject(MECD.currentUser)
       Backbone.history.navigate('dashboard', { trigger: true, replace: true })
     else
       Backbone.history.navigate('home', { trigger: true, replace: true })

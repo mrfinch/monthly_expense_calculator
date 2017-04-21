@@ -8,6 +8,7 @@ class MonthlyExpenseCalculator.Views.DashboardView extends Backbone.View
 
   initialize: (options = {}) ->
     console.log 'view init', options
+    @collection = new MonthlyExpenseCalculator.Collections.ExpensesCollection
 
   render: =>
     $(@el).html @template()
@@ -17,20 +18,31 @@ class MonthlyExpenseCalculator.Views.DashboardView extends Backbone.View
     @
 
   openAddExpenseModal: (e) ->
-    addExpenseModal = new MonthlyExpenseCalculator.Views.ExpenseModalView
+    addExpenseModal = new MonthlyExpenseCalculator.Views.ExpenseModalView({parent: @, collection: @collection})
     @$('.js-add-expense-modal').html addExpenseModal.render().el
 
   renderRecentExpenses: ->
-    @recentExpenseCollection = new MonthlyExpenseCalculator.Collections.ExpensesCollection
-    @recentExpenseCollection.fetchRecentlyAddedExpense(true)
-    @recentExpenseCollection.fetch
-      success: (collection) ->
+    @collection.fetchRecentlyAddedExpense(true)
+    @collection.fetch
+      success: (collection) =>
         console.log collection, 'succ'
-        _.each collection.models, (model) ->
-          expenseCardView = new MonthlyExpenseCalculator.Views.ExpenseCardView({model: model})
-          @$('.js-recent-expenses').append expenseCardView.render().el
+        @displayRecentExpenses()
+        # _.each collection.models, (model) ->
+        #   expenseCardView = new MonthlyExpenseCalculator.Views.ExpenseCardView({model: model, parent: @})
+        #   @$('.js-recent-expenses').append expenseCardView.render().el
       error: (m) ->
         console.log m
+
+  displayRecentExpenses: ->
+    console.error 'helllll'
+    @$('.js-recent-expenses').html('')
+    _.each @collection.models, (model) =>
+      console.log @
+      expenseCardView = new MonthlyExpenseCalculator.Views.ExpenseCardView({model: model, parent: @})
+      @$('.js-recent-expenses').append expenseCardView.render().el
+    # @listenTo @collection, 'change', @renderRecentExpenses()
+    # @collection.on 'change', @displayRecentExpenses()
+
 
   MECD = window.MECD ? {}
   MECD.DashboardView = DashboardView

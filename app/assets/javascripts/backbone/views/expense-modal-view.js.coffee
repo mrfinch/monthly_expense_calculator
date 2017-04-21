@@ -8,8 +8,10 @@ class MonthlyExpenseCalculator.Views.ExpenseModalView extends Backbone.View
     "submit form[name=edit-expense]": 'editExpense'
 
   initialize: (options = {}) ->
-    console.log 'view init modal', options
+    console.log 'view init expense modal', options, @parent
     @model = options.model
+    @parent = options.parent
+    @collection = options.collection # needed for add expense
 
   render: ->
     $(@el).html @template(
@@ -29,8 +31,15 @@ class MonthlyExpenseCalculator.Views.ExpenseModalView extends Backbone.View
     console.log final_data
     @model = new MonthlyExpenseCalculator.Models.ExpenseModel
     @model.save(final_data,
-      success: (m) ->
-        console.log m
+      success: (m, resp, opt) =>
+        console.log m,@parent
+        @$('#expense-modal').modal('hide')
+        @collection.fetch
+          success: (collection) =>
+            console.log 'coll success', collection
+            @parent.displayRecentExpenses()
+          error: (c) ->
+            console.log c
       error: (m) ->
         console.log m,'err'
     )
@@ -39,13 +48,18 @@ class MonthlyExpenseCalculator.Views.ExpenseModalView extends Backbone.View
     console.log 'edit'
     e.preventDefault()
     data = $(e.currentTarget).serializeArray()
+    console.log data
     _.each data, (obj) =>
       @model.set obj.name, obj.value
-    @model.save
-      success: (m) ->
+    console.log @model
+    @model.save(null,
+      success: (m, resp, opt) =>
         console.log 'success', m
+        @$('#expense-modal').modal('hide')
+        @parent.displayRecentExpenses()
       error: (m) ->
         console.log 'error', m
+    )
 
   MECD = window.MECD ? {}
   MECD.ExpenseModalView = ExpenseModalView
