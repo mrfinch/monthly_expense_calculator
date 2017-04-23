@@ -6,6 +6,7 @@ class MonthlyExpenseCalculator.Views.TopNavView extends Backbone.View
   events:
     'click .js-login': 'login'
     'click .js-signup': 'signup'
+    'click .js-logout': 'logOut'
 
   initialize: (options = {}) ->
     console.log 'top view init', options
@@ -33,6 +34,18 @@ class MonthlyExpenseCalculator.Views.TopNavView extends Backbone.View
     loginSignuModal = new MonthlyExpenseCalculator.Views.LoginSignupModalView(options)
     # console.log loginSignuModal.render().el
     @$('.js-signup-login').html loginSignuModal.render().el
+
+  logOut: (e) ->
+    e.preventDefault()
+    $.ajax
+      type: 'GET'
+      url: 'auth/logout'
+      success: (result,status,xhr) =>
+        console.log result
+        MECD.currentUser = null
+        Backbone.history.navigate('home', { trigger: true })
+      error: (xhr,status,error) ->
+        console.log xhr
 
   MECD = window.MECD ? {}
   MECD.TopNavView = TopNavView

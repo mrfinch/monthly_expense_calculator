@@ -7,13 +7,11 @@ class MonthlyExpenseCalculator.Views.ExpenseCardView extends Backbone.View
     'click .js-edit-expense': 'editExpense'
 
   initialize: (options = {}) ->
-    console.log 'init card', options, @model.get('cost')
     @model = options.model
     @parent = options.parent
     @collection = options.collection
 
   render: ->
-    console.log @model
     @$el.html @template(
       model: @model.toJSON()
     )

@@ -18,6 +18,14 @@
             </p>
           </li>
         </ul>
+      <% } else if(loggedIn) { %>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <p class="navbar-btn">
+              <a href="#" class="btn btn-primary msL msR js-logout">Log out</a>
+            </p>
+          </li>
+        </ul>
       <% } %>
     </div>
   </nav>

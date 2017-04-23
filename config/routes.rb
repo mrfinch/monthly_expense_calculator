@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :expenses
+    resource :users
   end
 
   match 'auth/signup', via: [:post], to: 'auth#signup'

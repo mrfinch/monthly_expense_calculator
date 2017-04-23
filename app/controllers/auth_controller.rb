@@ -57,9 +57,9 @@ class AuthController < ApplicationController
     end
 
     if message.present?
-      render json: { message: message, status: false }, status: 400
+      render json: { message: message, status: false, model: nil }, status: 400
     else
-      render json: { message: 'Success', status: true }, status: 200
+      render json: { message: 'Success', status: true, model: user.attributes }, status: 200
     end
 
   end

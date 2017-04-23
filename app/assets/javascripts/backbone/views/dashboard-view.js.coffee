@@ -7,7 +7,6 @@ class MonthlyExpenseCalculator.Views.DashboardView extends Backbone.View
     'click .js-add-expense': 'openAddExpenseModal'
 
   initialize: (options = {}) ->
-    console.log 'view init', options
     @collection = new MonthlyExpenseCalculator.Collections.ExpensesCollection
 
   render: =>
@@ -37,7 +36,6 @@ class MonthlyExpenseCalculator.Views.DashboardView extends Backbone.View
     console.error 'helllll'
     @$('.js-recent-expenses').html('')
     _.each @collection.models, (model) =>
-      console.log @
       expenseCardView = new MonthlyExpenseCalculator.Views.ExpenseCardView({model: model, parent: @, @collection})
       @$('.js-recent-expenses').append expenseCardView.render().el
     console.log @collection.total_expenses

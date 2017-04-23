@@ -49,6 +49,7 @@ class MonthlyExpenseCalculator.Views.LoginSignupModalView extends Backbone.View
         console.log result
         @removeModalBackdrop()
         @$('#login-signup-modal').modal('hide')
+        $('body').removeClass('modal-open')
       error: (xhr,status,error) ->
         console.log xhr
 
@@ -59,12 +60,15 @@ class MonthlyExpenseCalculator.Views.LoginSignupModalView extends Backbone.View
       type: 'POST'
       data: data
       url: 'auth/login'
-      success: (result,status,xhr) =>
+      success: (result, status, xhr) =>
         console.log result
+        MECD.currentUser = result.model
         @$('#login-signup-modal').modal('hide')
         @removeModalBackdrop()
+        $('body').removeClass('modal-open') # bcoz bootstrap hide doesn't remove it affecting scroll on dashobard page
+        Backbone.history.fragment = null if Backbone.history.fragment == 'dashboard' # so that dashboard page gets reloaded from dashboard page too
         Backbone.history.navigate('dashboard', { trigger: true })
-      error: (xhr,status,error) ->
+      error: (xhr, status, error) ->
         console.log xhr
 
   removeModalBackdrop: ->

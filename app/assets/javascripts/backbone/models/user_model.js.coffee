@@ -1,10 +1,10 @@
-class MonthlyExpenseCalculator.Models.ExpenseModel extends Backbone.Model
+class MonthlyExpenseCalculator.Models.UserModel extends Backbone.Model
 
   urlRoot:
-    '/api/expenses'
+    '/api/users'
 
   initialize: (options = {}) ->
-    # console.log 'view init model', options
+    console.log 'view user model', options
 
   parse: (response, options) ->
     if _.isObject(response.model)
@@ -13,4 +13,4 @@ class MonthlyExpenseCalculator.Models.ExpenseModel extends Backbone.Model
       response
 
   MECD = window.MECD ? {}
-  MECD.ExpenseModel = ExpenseModel
+  MECD.UserModel = UserModel

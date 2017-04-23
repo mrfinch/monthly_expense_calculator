@@ -2,7 +2,14 @@ class MonthlyExpenseCalculator.Routers.DashboardRouter extends Backbone.Router
 
   initialize: ->
     # set top bar
-    console.log 'as'
+    console.log 'router initialize'
+    unless MECD.currentUser
+      user = new MonthlyExpenseCalculator.Models.UserModel
+      user.fetch
+        success: (m) ->
+          MECD.currentUser = m
+        error: (m) ->
+          console.log m
 
   routes:
     'dashboard': 'dashboard'
@@ -15,11 +22,11 @@ class MonthlyExpenseCalculator.Routers.DashboardRouter extends Backbone.Router
     options = {a: 'hello'}
     dashboardView = new MonthlyExpenseCalculator.Views.DashboardView(options)
     # $('.mecd-main').html dashboardView.render().el
-    @renderPage(dashboardView, true)
+    @renderPage(dashboardView)
 
   home: ->
     homePageView = new MonthlyExpenseCalculator.Views.HomePageView({})
-    @renderPage(homePageView, false)
+    @renderPage(homePageView)
 
   redirect: ->
     console.log 'redirect',MECD.currentUser
@@ -31,8 +38,8 @@ class MonthlyExpenseCalculator.Routers.DashboardRouter extends Backbone.Router
   not_found: ->
     console.log 'not found'
 
-  renderPage: (view, loggedIn = false) ->
-    options = { loggedIn: loggedIn } # this is temporary, remove after user model authentication is done
+  renderPage: (view) ->
+    options = { loggedIn: MECD.currentUser? }
     topNavView = new MonthlyExpenseCalculator.Views.TopNavView(options)
     $('#mecd-top-nav-container-id').html topNavView.render().el
     $('#mecd-full-container-id').html view.render().el
