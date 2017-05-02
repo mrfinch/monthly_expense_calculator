@@ -38,10 +38,18 @@
   padding-top: 10px;
 }
 
+.remove-underline-hover {
+  text-decoration: none;
+}
+
 .remove-underline-hover:hover {
   text-decoration: none;
 }
 
 .inherit-color {
   color: inherit;
+}
+
+.black-color {
+  color: #FFF;
 }

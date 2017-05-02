@@ -9,6 +9,8 @@ class MonthlyExpenseCalculator.Views.DashboardMainView extends Backbone.View
     @title = options.title || 'Expenses'
 
   render: ->
+    @title = if @collection.recentlyAdded then 'Recently Expenses' else 'Expenses'
+
     @$el.html @template(
       title: @title
     )
@@ -24,8 +26,8 @@ class MonthlyExpenseCalculator.Views.DashboardMainView extends Backbone.View
       expenseCardView = new MonthlyExpenseCalculator.Views.ExpenseCardView({model: model, parent: @, collection: @collection})
       @$('.js-expenses').append expenseCardView.render().el
     @$('.js-total-expenses').html(@collection.total_expenses)
-    @listenTo @collection, 'change', @renderExpenses
-    @listenTo @collection, 'reset', @renderExpenses
+    @listenTo @collection, 'change', @render
+    @listenTo @collection, 'reset', @render
 
   MECD = window.MECD ? {}
   MECD.DashboardMainView = DashboardMainView

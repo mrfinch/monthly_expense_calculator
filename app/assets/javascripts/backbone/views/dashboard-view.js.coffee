@@ -48,7 +48,7 @@ class MonthlyExpenseCalculator.Views.DashboardView extends Backbone.View
     # @collection.on 'change', @displayRecentExpenses()
 
   renderLeftSideView: ->
-    leftSideView = new MonthlyExpenseCalculator.Views.DashboardLeftSideView()
+    leftSideView = new MonthlyExpenseCalculator.Views.DashboardLeftSideView({ recentExpense: true, collection: @collection })
     @$('.left-side-view').html(leftSideView.render().el)
 
   renderMainView: ->
