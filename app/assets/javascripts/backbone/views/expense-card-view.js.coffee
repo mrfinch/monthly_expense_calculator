@@ -5,6 +5,7 @@ class MonthlyExpenseCalculator.Views.ExpenseCardView extends Backbone.View
 
   events:
     'click .js-edit-expense': 'editExpense'
+    'click .js-delete-expense': 'deleteExpense'
 
   initialize: (options = {}) ->
     @model = options.model
@@ -22,6 +23,16 @@ class MonthlyExpenseCalculator.Views.ExpenseCardView extends Backbone.View
     e.preventDefault()
     editExpenseModal = new MonthlyExpenseCalculator.Views.ExpenseModalView({model: @model, parent: @parent, collection: @collection})
     $('.js-add-expense-modal').html editExpenseModal.render().el
+
+  deleteExpense: (e) ->
+    e.preventDefault()
+    expenseId = $(e.currentTarget).data('id')
+    @model.destroy(
+      success: (m, resp, opt) =>
+        @collection.fetch({reset: true})
+      error: (m, resp, opt) =>
+        console.log 'err', m
+    )
 
   MECD = window.MECD ? {}
   MECD.ExpenseCardView = ExpenseCardView

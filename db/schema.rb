@@ -11,17 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170415090518) do
+ActiveRecord::Schema.define(version: 20170502110039) do
 
   create_table "expenses", force: true do |t|
-    t.string   "name",                  null: false
-    t.float    "cost",       limit: 24, null: false
-    t.datetime "made_on",               null: false
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.string   "name",                                 null: false
+    t.float    "cost",       limit: 24,                null: false
+    t.datetime "made_on",                              null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "user_id"
+    t.boolean  "active",                default: true
   end
 
+  add_index "expenses", ["active"], name: "index_expenses_on_active", using: :btree
   add_index "expenses", ["created_at"], name: "index_expenses_on_created_at", using: :btree
   add_index "expenses", ["updated_at"], name: "index_expenses_on_updated_at", using: :btree
   add_index "expenses", ["user_id"], name: "index_expenses_on_user_id", using: :btree

@@ -5,6 +5,10 @@
   </div>
   <div class="clearfix"></div>
   <div class="sub-info msT">
-    <em>Cost:</em> <strong><%- model.cost %></strong> <span class="dot"></span> <%- moment(model.made_on).local().format("YYYY-MM-DD HH:mm") %>
+    <span>
+      <em>Cost:</em> <strong><%- model.cost %></strong> <span class="dot"></span> <%- moment(model.made_on).local().format("YYYY-MM-DD HH:mm") %>
+    <a href="#" class="js-delete-expense delete-symbol" data-id="<%- model.id %>"><span class="glyphicon glyphicon-remove pull-right mssT"></span></a>
+    <span class="clearfix"></span>
+    </span>
   </div>
 </div>

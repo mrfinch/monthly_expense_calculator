@@ -3,10 +3,10 @@ module Api
 
     include ApplicationHelper
     before_filter :check_user_login
-    before_filter :can_update_expense?, only: [:update]
+    before_filter :can_update_expense?, only: [:update, :destroy]
 
     def index
-      expenses = current_user.expenses
+      expenses = current_user.not_deleted_expenses
 
       if params[:recently_added]
         expenses = expenses.order('created_at DESC')
@@ -40,6 +40,16 @@ module Api
 
       if @expense.save
         render json: { model: @expense.attributes, status: true, total_expenses: current_user.total_expenses }, status: :ok
+      else
+        render json: { model: {}, status: false }, status: 400
+      end
+    end
+
+    def destroy
+      @expense.active = false
+
+      if @expense.save
+        render json: { model: {}, status: true, total_expenses: current_user.total_expenses }, status: :ok
       else
         render json: { model: {}, status: false }, status: 400
       end
