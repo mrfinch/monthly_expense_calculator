@@ -31,12 +31,13 @@ class MonthlyExpenseCalculator.Views.ExpenseModalView extends Backbone.View
     @model = new MonthlyExpenseCalculator.Models.ExpenseModel
     @model.save(final_data,
       success: (m, resp, opt) =>
-        console.log m,@parent
+        console.log 'model create', m
         @$('#expense-modal').modal('hide')
         @collection.fetch
+          reset: true
           success: (collection) =>
             console.log 'coll success', collection
-            @parent.displayRecentExpenses()
+            # @parent.displayRecentExpenses()
           error: (c) ->
             console.log c
       error: (m) ->
@@ -48,17 +49,18 @@ class MonthlyExpenseCalculator.Views.ExpenseModalView extends Backbone.View
     e.preventDefault()
     data = $(e.currentTarget).serializeArray()
     console.log data
+    temp = {}
     _.each data, (obj) =>
-      @model.set obj.name, obj.value
+      temp[obj.name] = obj.value
+    @model.set temp, { silent: true }
     console.log @model
     @model.save(null,
       success: (m, resp, opt) =>
-        console.log 'success', m
         @$('#expense-modal').modal('hide')
         @collection.fetch
           success: (collection) =>
             console.log 'coll success', collection
-            @parent.displayRecentExpenses()
+            # @parent.renderExpenses()
           error: (c) ->
             console.log c
       error: (m) ->

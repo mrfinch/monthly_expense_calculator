@@ -34,14 +34,26 @@ class MonthlyExpenseCalculator.Views.DashboardView extends Backbone.View
 
   displayRecentExpenses: ->
     console.error 'helllll'
-    @$('.js-recent-expenses').html('')
-    _.each @collection.models, (model) =>
-      expenseCardView = new MonthlyExpenseCalculator.Views.ExpenseCardView({model: model, parent: @, @collection})
-      @$('.js-recent-expenses').append expenseCardView.render().el
-    console.log @collection.total_expenses
-    @$('.js-total-expenses').html(@collection.total_expenses)
+    @renderLeftSideView()
+    @renderMainView()
+    # @$('.js-recent-expenses').html('')
+    # @$('.main-view').html('')
+    # _.each @collection.models, (model) =>
+    #   expenseCardView = new MonthlyExpenseCalculator.Views.ExpenseCardView({model: model, parent: @, collection: @collection})
+    #   # @$('.js-recent-expenses').append expenseCardView.render().el
+    #   @$('.main-view').append expenseCardView.render().el
+    # console.log @collection.total_expenses
+    # @$('.js-total-expenses').html(@collection.total_expenses)
     # @listenTo @collection, 'change', @renderRecentExpenses()
     # @collection.on 'change', @displayRecentExpenses()
+
+  renderLeftSideView: ->
+    leftSideView = new MonthlyExpenseCalculator.Views.DashboardLeftSideView()
+    @$('.left-side-view').html(leftSideView.render().el)
+
+  renderMainView: ->
+    mainView = new MonthlyExpenseCalculator.Views.DashboardMainView({ collection: @collection, title: 'Recent Expenses' })
+    @$('.main-view').html(mainView.render().el)
 
 
   MECD = window.MECD ? {}
