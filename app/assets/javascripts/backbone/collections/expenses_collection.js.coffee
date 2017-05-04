@@ -18,6 +18,7 @@ class MonthlyExpenseCalculator.Collections.ExpensesCollection extends Backbone.C
   parse: (response, options) ->
     @total = response.total
     @total_expenses = response.total_expenses
+    @num_of_expenses = response.num_of_expenses
 
     if _.isObject(response.data)
       response.data

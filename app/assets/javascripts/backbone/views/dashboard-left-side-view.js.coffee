@@ -29,6 +29,8 @@ class MonthlyExpenseCalculator.Views.DashboardLeftSideView extends Backbone.View
       @collection.fetchRecentlyAddedExpense(true)
     else
       @collection.fetchRecentlyAddedExpense(false)
+    @collection.limit = 5
+    @collection.start = 0
     @collection.fetch({reset: true})
 
   MECD = window.MECD ? {}

@@ -14,12 +14,12 @@ module Api
 
       total = expenses.count
 
-      offset = params[:offset] || 0
+      offset = params[:start] || 0
       limit = params[:limit] || 5
 
       data = expenses.offset(offset).limit(limit).map { |exp| exp.attributes }
 
-      render json: { data: data, status: true, total: total, total_expenses: current_user.total_expenses }, status: :ok
+      render json: { data: data, status: true, total: total, total_expenses: current_user.total_expenses, num_of_expenses: current_user.num_of_expenses }, status: :ok
     end
 
     def create
@@ -39,7 +39,7 @@ module Api
       @expense.cost = params[:cost]
 
       if @expense.save
-        render json: { model: @expense.attributes, status: true, total_expenses: current_user.total_expenses }, status: :ok
+        render json: { model: @expense.attributes, status: true, total_expenses: current_user.total_expenses, num_of_expenses: current_user.num_of_expenses }, status: :ok
       else
         render json: { model: {}, status: false }, status: 400
       end

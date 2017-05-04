@@ -14,7 +14,11 @@ class User < ActiveRecord::Base
   before_save :downcase_email
 
   def total_expenses
-    expenses.not_deleted.pluck(:cost).sum
+    not_deleted_expenses.pluck(:cost).sum
+  end
+
+  def num_of_expenses
+    not_deleted_expenses.count
   end
 
   def not_deleted_expenses
