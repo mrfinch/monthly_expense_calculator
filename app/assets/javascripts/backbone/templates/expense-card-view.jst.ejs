@@ -1,14 +1,14 @@
 <div class="expense-notice expense-success">
   <div class="expense-heading js-edit-expense edit-expense" data-id="<%- model.id %>">
-    <%- model.name %>
+    <span><%- model.name.charAt(0).toUpperCase() + model.name.slice(1) %></span><span class="pull-right msR"><span class="currency-font">&#8377;</span> <%- model.cost %><span></span><span class="clearfix"></span>
   </div>
   <div class="clearfix"></div>
   <div class="sub-info msT">
     <span>
-      <span class="js-edit-expense edit-expense" data-id="<%- model.id %>">
-      <em>Cost:</em> <strong><%- model.cost %></strong> <span class="dot"></span> <%- moment(model.made_on).local().format("YYYY-MM-DD HH:mm") %>
+      <span class="js-edit-expense edit-expense sub-level" data-id="<%- model.id %>">
+      <%- moment(model.made_on).local().format("Do MMM YYYY") %>
       </span>
-    <a href="#" class="js-delete-expense delete-symbol" data-id="<%- model.id %>"><span class="glyphicon glyphicon-remove pull-right mssT"></span></a>
+    <a href="#" class="js-delete-expense delete-symbol" data-id="<%- model.id %>"><span class="glyphicon glyphicon-remove pull-right mssT msR"></span></a>
     <span class="clearfix"></span>
     </span>
   </div>
