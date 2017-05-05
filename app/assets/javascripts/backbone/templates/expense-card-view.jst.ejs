@@ -1,12 +1,13 @@
 <div class="expense-notice expense-success">
-  <div class="expense-heading">
+  <div class="expense-heading js-edit-expense edit-expense" data-id="<%- model.id %>">
     <%- model.name %>
-    <a href="#" class="btn btn-default pull-right js-edit-expense" data-id="<%- model.id %>">Edit</a>
   </div>
   <div class="clearfix"></div>
   <div class="sub-info msT">
     <span>
+      <span class="js-edit-expense edit-expense" data-id="<%- model.id %>">
       <em>Cost:</em> <strong><%- model.cost %></strong> <span class="dot"></span> <%- moment(model.made_on).local().format("YYYY-MM-DD HH:mm") %>
+      </span>
     <a href="#" class="js-delete-expense delete-symbol" data-id="<%- model.id %>"><span class="glyphicon glyphicon-remove pull-right mssT"></span></a>
     <span class="clearfix"></span>
     </span>
