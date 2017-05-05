@@ -12,7 +12,7 @@ class MonthlyExpenseCalculator.Views.DashboardMainView extends Backbone.View
     @title = options.title || 'Expenses'
 
   render: ->
-    @title = if @collection.recentlyAdded then 'Recently Expenses' else 'Expenses'
+    @title = if @collection.recentlyAdded then 'Recent Expenses' else 'Expenses'
     console.log @collection.start
     @$el.html @template(
       title: @title,
